@@ -14,10 +14,10 @@
 </head>
 <body>
   <h1>🔎 ResumeLens</h1>
-  <b><i>AI-powered resume risk analysis</i></b>
+  <p>AI-powered resume risk analysis</p>
 
   <div class="row">
-    <label for="role">Choose your desired role:</label>
+    <input id="apiKey" type="password" placeholder="Gemini API key (prototype)" style="flex:1;">
     <select id="role">
       <option>Software Engineer</option>
       <option>Cloud Engineer</option>
@@ -27,8 +27,10 @@
       <option>Social Media Manager</option>
       <option>Crisis Communication Manager</option>
       <option>Marketing Executive</option>
+      <option>Marketing Assistant</option>
     </select>
   </div>
+
   <textarea id="resume" placeholder="Paste resume text here..."></textarea>
 
   <div class="row">

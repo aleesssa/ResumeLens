@@ -21,6 +21,8 @@ You are an ATS resume screening AI.
 
 Analyze this resume for the role: ${role}.
 
+For top issues, put "No huge issues identified." if no top issues are found.
+
 Return raw JSON only. Do not wrap in triple backticks or markdown code blocks.
 
 Return STRICT JSON only in this format:
@@ -94,7 +96,7 @@ function renderResult(parsed) {
 
 document.getElementById("analyzeBtn").addEventListener("click", async () => {
   const btn = document.getElementById("analyzeBtn");
-  const apiKey = "AIzaSyDeabFwCcC7YitFy6IRnRXhjNQuCtdfREE";
+  const apiKey = document.getElementById("apiKey").value.trim();
   const resume = document.getElementById("resume").value.trim();
   const role = document.getElementById("role").value;
   const output = document.getElementById("output");
