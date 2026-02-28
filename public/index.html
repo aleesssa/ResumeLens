@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ResumeLens</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 900px; margin: 24px auto; padding: 0 16px; }
+    textarea { width: 100%; height: 220px; }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0; }
+    select, input, button { padding: 10px; }
+    .card { border: 1px solid #ddd; border-radius: 10px; padding: 12px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <h1>🔎 ResumeLens</h1>
+  <p>AI-powered resume risk analysis</p>
+
+  <div class="row">
+    <input id="apiKey" type="password" placeholder="Gemini API key (prototype)" style="flex:1;">
+    <select id="role">
+      <option>Software Engineer</option>
+      <option>Cloud Engineer</option>
+      <option>Data Analyst</option>
+    </select>
+  </div>
+
+  <textarea id="resume" placeholder="Paste resume text here..."></textarea>
+
+  <div class="row">
+    <button id="analyzeBtn">Analyze Resume</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
