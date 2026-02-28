@@ -102,9 +102,9 @@ By identifying these issues early, ResumeLens improves employment readiness and 
 
 ## 🔗 Live Demo
 
-[Insert Firebase Hosting Link Here]
+https://resumelens-820b6.web.app/
 
 ## 👥 Team
 
-**Team Name:** [Your Team Name]  
+**Team Name:** melogi
 **Submission:** Hackathon 2026
