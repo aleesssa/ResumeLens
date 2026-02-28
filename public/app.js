@@ -94,7 +94,7 @@ function renderResult(parsed) {
 
 document.getElementById("analyzeBtn").addEventListener("click", async () => {
   const btn = document.getElementById("analyzeBtn");
-  const apiKey = document.getElementById("apiKey").value.trim();
+  const apiKey = "AIzaSyDeabFwCcC7YitFy6IRnRXhjNQuCtdfREE";
   const resume = document.getElementById("resume").value.trim();
   const role = document.getElementById("role").value;
   const output = document.getElementById("output");
