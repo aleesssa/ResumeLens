@@ -1,47 +1,59 @@
 # ResumeLens
 
-**AI-Powered Resume Risk Analysis for Job Readiness**
+AI-Powered Resume Risk Analysis & Job Description Matching
 
 ## 🌍 SDG Alignment
 
 **SDG 8 – Decent Work and Economic Growth**
 
-ResumeLens supports SDG 8 by improving employability readiness among students and fresh graduates. It helps users identify resume weaknesses before applying for jobs, increasing their chances of passing AI-based applicant screening systems.
+ResumeLens supports SDG 8 by improving employability readiness among students and fresh graduates. It reduces the gap between applicants and AI-driven hiring systems by simulating ATS-style resume screening and identifying structural, contextual, and role-specific weaknesses before job submission.
 
 ## 📌 Problem Statement
 
-Modern hiring processes increasingly rely on AI-powered Applicant Tracking Systems (ATS) to filter resumes before a recruiter reviews them.
+Modern hiring pipelines increasingly rely on AI-powered Applicant Tracking Systems (ATS) to filter resumes before recruiters review them.
 
-Many students:
-- Receive rejection without feedback
-- Lack awareness of ATS expectations
-- Fail to tailor resumes to specific roles
+**Many students and fresh graduates:**
+- Receive automated rejections without feedback
+- Do not understand how ATS systems evaluate resumes
+- Fail to tailor resumes to specific job descriptions
+- Miss important keywords required for screening
 - Do not quantify achievements effectively
 
-This creates an invisible barrier to employment. ResumeLens addresses this gap by providing structured AI-driven resume risk analysis and actionable improvements.
+This creates an invisible barrier to employment. ResumeLens addresses this by providing structured AI-driven resume evaluation and role-aligned improvement guidance.
 
 ## 💡 Solution Overview
 
-ResumeLens simulates AI resume screening using Google Gemini to:
-- Generate an overall resume score (0–100)
-- Classify hiring risk level (Low / Medium / High)
-- Identify structural and contextual weaknesses
-- Provide role-specific improvement suggestions
+ResumeLens simulates AI-based resume screening using Google Gemini.
 
-The system returns structured JSON output which is parsed and rendered into a clean evaluation card.
+**The system allows users to:**
+- Paste resume text
+- Select a target job role
+- Optionally paste a specific job description
+- Receive structured evaluation results
 
-## 🧠 AI Integration (Core Technology)
+**The AI generates:**
+- Overall resume score (0–100)
+- Hiring risk level (Low / Medium / High)
+- Top issues with resume evidence snippets
+- Actionable improvements with rewrite examples
+- (When provided) Alignment analysis with job description
+
+Results are parsed into structured JSON and rendered into a clean evaluation interface. Evaluations are stored in Firestore for persistence and analytics.
+
+## 🧠 AI Integration (Core Evaluation Engine)
 
 ResumeLens integrates:
-- Gemini 2.5 Flash-Lite via Google's Generative Language API
-- Structured prompt engineering to enforce JSON outputs
-- Error handling, retry logic, and token trimming
-- Strict output parsing to convert LLM response into evaluable data
+- Gemini 2.5 Flash-Lite
+- Structured prompt engineering to enforce strict JSON output
+- Evidence extraction from resume text
+- Role-aware evaluation logic
+- Job description comparison (optional mode)
+- Output sanitization and markdown stripping
+- Strict JSON parsing with fallback handling
 
-AI is the core evaluation engine of ResumeLens — not just a text generator.
+## 🔒 Secure Cloud Architecture
 
-## 🏗 Technical Architecture
-
+ResumeLens uses a production-style cloud architecture:
 ```
 User Input (Resume Text + Target Role)
             ↓
@@ -56,56 +68,94 @@ Parser & UI Rendering
 Firestore Storage
 ```
 
+**Why Cloud Run?**
+- Protects Gemini API key (not exposed to browser)
+- Handles AI request logic securely
+- Sanitizes and extracts JSON safely
+- Prepares the system for scaling
+
+## 🏗 Technical Architecture
+
+### Frontend
+- Firebase Hosting
+- Vanilla JavaScript
+- Resume + Job Description input handling
+- JSON parsing & UI rendering
+- Firestore persistence
+
+### Backend (Cloud Run)
+- Express.js API
+- Secure API key stored as environment variable
+- Prompt builder logic
+- Gemini API request handling
+- Markdown code block removal
+- Robust JSON extraction
+
+### Database
+- Firestore
+- Stores evaluation records with timestamp
+- Structured nested result storage
+
 ## 🛠 Tech Stack
 
 - Firebase Hosting
 - Firestore Database
-- Google Cloud Project (Billing-enabled for AI quota)
+- Google Cloud Run
+- Google Cloud Build
+- Artifact Registry
 - Gemini 2.5 Flash-Lite
+- Google Cloud Project (Billing enabled)
 - JavaScript (Frontend)
-- Prompt Engineering + Structured Output Handling
+- Node.js + Express (Backend)
 
 ## ⚙ Implementation Highlights
 
 - Token trimming to control API usage
-- Structured JSON enforcement
-- Markdown code-block stripping logic
-- Retry handling for 429 rate limits
-- Firestore persistence for analytics
+- Strict JSON schema enforcement
+- Markdown code-fence stripping
+- JSON object extraction logic
+- Retry handling for rate limits
+- API key isolation using Cloud Run
+- Conditional Job Description comparison
+- Structured nested Firestore storage
 
 ## 🚧 Challenges Faced
 
-- Gemini model deprecation handling
+- Gemini model deprecation and version changes
 - Free-tier quota limitations
 - Billing activation for AI API access
-- Parsing JSON responses wrapped in Markdown fences
-- Rate limit handling and request cooldown logic
+- Handling Markdown-wrapped JSON responses
+- Extracting valid JSON from non-deterministic LLM output
+- Implementing secure API key storage
+- CORS configuration between Cloud Run and Firebase
 
 ## 📊 Impact Potential
 
-During testing, common resume weaknesses detected included:
+Testing revealed common resume issues such as:
 - Lack of quantified achievements
 - Missing project sections
 - Weak role-specific tailoring
 - Generic summary statements
+- Absence of required job keywords
 
-By identifying these issues early, ResumeLens improves employment readiness and supports workforce competitiveness.
+ResumeLens helps users identify these structural weaknesses before submission, improving job readiness and alignment with AI-based hiring systems.
 
 ## 🚀 Future Roadmap
 
-- Allow users to upload resumes as PDF files instead of pasting text
-- Compare resumes directly against specific job descriptions
-- Add keyword alignment checks based on selected job roles
-- Improve scoring consistency using evaluation calibration
-- Develop a simple dashboard for university career centers to identify common resume weaknesses among students
-- Secure the API key using a backend service such as Cloud Run for production deployment
+- Allow PDF resume upload with server-side text extraction
+- Add resume-to-job-description match scoring
+- Improve keyword alignment scoring logic
+- Add user accounts with analysis history tracking
+- Build role-specific scoring calibration
+- Add analytics dashboard for university career centers
+- Implement rate limiting and authentication for production security
 
 ## 🔗 Live Demo
 
-https://resumelens-820b6.web.app/
+[https://resumelens-820b6.web.app/](https://resumelens-820b6.web.app/)
 
 ## 👥 Team
 
 **Team Name:** melogi
 
-**Submission:** Hackathon 2026
+**Hackathon:** 2026 Submission
